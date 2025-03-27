@@ -11,7 +11,7 @@ const NaturalStones = () => {
   const handleDownload = () => {
     setIsButtonAnimating(true);
     // Replace with your actual brochure URL
-    window.open('https://lctech.in/ISD/Isha_Natural Stone and Quartz Combined.pdf', '_blank');
+    window.open('/images/Isha_Natural Stone and Quartz Combined.pdf', '_blank');
     setTimeout(() => setIsButtonAnimating(false), 1000);
   };
 
