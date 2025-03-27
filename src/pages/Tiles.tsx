@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Download } from 'lucide-react';
 import { productImages } from '../config/images';
-import DownloadBrochure from '../components/DownloadBrochure';
 
 const tilesGallery = [
   {
@@ -34,6 +33,14 @@ const tilesGallery = [
 
 const Tiles = () => {
   const [index, setIndex] = useState(-1);
+  const [isButtonAnimating, setIsButtonAnimating] = useState(false);
+
+  const handleDownload = () => {
+    setIsButtonAnimating(true);
+    // Replace with your actual brochure URL
+    window.open('/images/Brochure_Tile,Marble,Spc.pdf', '_blank');
+    setTimeout(() => setIsButtonAnimating(false), 1000);
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -52,7 +59,22 @@ const Tiles = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fadeIn">
               Luxury <span className="text-orange-500">Tiles</span>
             </h1>
-            <DownloadBrochure category="Tiles" />
+            <button
+              onClick={handleDownload}
+              className={`group relative inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-black font-medium rounded-lg overflow-hidden transition-all duration-300 hover:bg-orange-400 ${
+                isButtonAnimating ? 'animate-pulse' : ''
+              }`}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <Download 
+                  className={`w-5 h-5 transition-transform duration-300 ${
+                    isButtonAnimating ? 'translate-y-1' : 'group-hover:translate-y-1'
+                  }`}
+                />
+                Download Brochure
+              </span>
+              <div className="absolute inset-0 bg-orange-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+            </button>
           </div>
         </div>
       </div>
